@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Slab:wght@300;500;700&display=swap');
+
+:root {
+  --bg-parchment: #f6eddc;
+  --edge-parchment: #ecd9b5;
+  --ink-dark: #3c2c1a;
+  --ink-accent: #8b1600;
+  --ink-muted: #6a5240;
+  --shadow: rgba(41, 25, 11, 0.18);
+  --shadow-strong: rgba(41, 25, 11, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Roboto Slab', Georgia, serif;
+  color: var(--ink-dark);
+  background: radial-gradient(circle at top, #fff7e8 0%, var(--bg-parchment) 55%, #e4cfa8 100%);
+  position: relative;
+  padding: 2.5rem clamp(1rem, 3vw, 4rem);
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 1.5rem;
+  border: 2px solid rgba(92, 63, 28, 0.3);
+  border-radius: 14px;
+  pointer-events: none;
+  box-shadow: inset 0 0 35px rgba(80, 54, 26, 0.25), 0 22px 40px -32px var(--shadow-strong);
+}
+
+main, section, article {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(2px);
+  border-radius: 18px;
+  border: 1px solid rgba(92, 63, 28, 0.15);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 2rem;
+  box-shadow: 0 12px 28px -18px var(--shadow-strong);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  color: var(--ink-accent);
+  letter-spacing: 0.08em;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  text-shadow: 2px 2px 0 rgba(41, 25, 11, 0.18);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+}
+
+p {
+  margin: 1rem 0;
+  color: var(--ink-muted);
+}
+
+ul, ol {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.5rem;
+}
+
+li + li {
+  margin-top: 0.4rem;
+}
+
+a {
+  color: var(--ink-accent);
+  text-decoration: none;
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ink-accent), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 160ms ease-out;
+}
+
+a:hover::after,
+a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(139, 22, 0, 0.4);
+  border-radius: 999px;
+  background: linear-gradient(120deg, rgba(139, 22, 0, 0.85), rgba(98, 14, 1, 0.85));
+  color: #f8efe3;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -18px rgba(139, 22, 0, 0.7);
+  text-transform: uppercase;
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -18px rgba(139, 22, 0, 0.8);
+}
+
+button:active,
+.btn:active {
+  transform: translateY(0);
+}
+
+.table, table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(92, 63, 28, 0.2);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.05);
+}
+
+.table th,
+table th,
+.table td,
+table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(92, 63, 28, 0.2);
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.table thead,
+table thead {
+  background: rgba(139, 22, 0, 0.08);
+  color: var(--ink-dark);
+  font-family: 'Cinzel', 'Times New Roman', serif;
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid rgba(139, 22, 0, 0.5);
+  background: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+code, pre {
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  background: rgba(32, 18, 9, 0.88);
+  color: #f9edd8;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 244, 227, 0.1);
+}
+
+code {
+  padding: 0.2rem 0.45rem;
+}
+
+pre {
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(92, 63, 28, 0.2);
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.nav-link {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: border-color 120ms ease-out, color 120ms ease-out;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  border-color: rgba(139, 22, 0, 0.4);
+  color: var(--ink-accent);
+}
+
+.card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(92, 63, 28, 0.2);
+  box-shadow: 0 18px 35px -28px var(--shadow-strong);
+}
+
+.card + .card {
+  margin-top: 1.5rem;
+}
+
+.stat-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.stat-block span {
+  padding: 0.6rem 0.75rem;
+  background: rgba(139, 22, 0, 0.08);
+  border: 1px solid rgba(139, 22, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(139, 22, 0, 0.2);
+  color: var(--ink-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dice-divider {
+  position: relative;
+  margin: 2.5rem auto;
+  width: min(480px, 100%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(92, 63, 28, 0.6), transparent);
+}
+
+.dice-divider::before,
+.dice-divider::after {
+  content: '\2684';
+  position: absolute;
+  top: -0.9rem;
+  font-size: 1.4rem;
+  color: rgba(139, 22, 0, 0.7);
+}
+
+.dice-divider::before {
+  left: -1.2rem;
+}
+
+.dice-divider::after {
+  right: -1.2rem;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 1.5rem;
+  }
+
+  body::before {
+    inset: 0.75rem;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  main, section, article {
+    padding: 1.25rem;
+  }
+}
+
