@@ -7,14 +7,24 @@ import { connectDB } from './config/db.js';
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
-(async () => {
-  if (!MONGO_URI) {
-    console.error('Falta MONGO_URI en .env');
+const startServer = async () => {
+  try {
+    if (!MONGO_URI) {
+      throw new Error('Falta MONGO_URI en las variables de entorno');
+    }
+
+    // Conexión a MongoDB Atlas
+    await connectDB(MONGO_URI);
+    console.log(' Conectado a MongoDB');
+
+   
+    app.listen(PORT, () => {
+      console.log(`Servidor escuchando en el puerto ${PORT}`);
+    });
+  } catch (error) {
+    console.error('Error al iniciar el servidor:', error);
     process.exit(1);
   }
-  await connectDB(MONGO_URI);
-  app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
-  });
-})();
+};
 
+startServer();
