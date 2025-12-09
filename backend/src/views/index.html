@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>DnD5e API - Backend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>API RESTful - DnD5e (MongoDB)</h1>
+  <p>
+    API con autenticacion JWT y CRUD para <strong>Spells</strong>, <strong>Monsters</strong>,
+    <strong>Races</strong> y <strong>Equipment</strong> importados desde
+    <a href="https://www.dnd5eapi.co/" target="_blank" rel="noopener">D&D 5e API</a>.
+  </p>
+
+  <h2>Endpoints</h2>
+  <h3>Spells</h3>
+  <ul>
+    <li><a href="/api/spells">GET /api/spells</a> (filtros: <code>?name=</code>, <code>?level=</code>, <code>?school=</code>, <code>?ritual=</code>, <code>?concentration=</code>, paginacion <code>?page=&limit=</code>)</li>
+    <li>GET /api/spells/:id</li>
+    <li>POST /api/spells</li>
+    <li>PATCH /api/spells/:id</li>
+    <li>DELETE /api/spells/:id</li>
+  </ul>
+
+  <h3>Monsters</h3>
+  <ul>
+    <li><a href="/api/monsters">GET /api/monsters</a> (filtros: <code>?name=</code>, <code>?type=</code>, <code>?crMin=</code>, <code>?crMax=</code>, paginacion <code>?page=&limit=</code>)</li>
+    <li>GET /api/monsters/:id</li>
+    <li>POST /api/monsters</li>
+    <li>PATCH /api/monsters/:id</li>
+    <li>DELETE /api/monsters/:id</li>
+  </ul>
+
+  <h3>Races</h3>
+  <ul>
+    <li><a href="/api/races">GET /api/races</a> (filtros: <code>?name=</code>, <code>?size=</code>, paginacion <code>?page=&limit=</code>)</li>
+    <li>GET /api/races/:id</li>
+    <li>POST /api/races</li>
+    <li>PATCH /api/races/:id</li>
+    <li>DELETE /api/races/:id</li>
+  </ul>
+
+  <h3>Equipment</h3>
+  <ul>
+    <li><a href="/api/equipment">GET /api/equipment</a> (filtros: <code>?name=</code>, <code>?category=</code>, <code>?gear=</code>, <code>?minWeight=</code>, <code>?maxWeight=</code>, paginacion <code>?page=&limit=</code>)</li>
+    <li>GET /api/equipment/:id</li>
+    <li>POST /api/equipment</li>
+    <li>PATCH /api/equipment/:id</li>
+    <li>DELETE /api/equipment/:id</li>
+  </ul>
+
+  <h2>Como empezar</h2>
+  <pre>npm i
+cp .env.example .env
+# Editar MONGO_URI si hace falta
+npm run seed
+npm run dev
+  </pre>
+
+  <footer>
+    <div><strong>Alumno:</strong> Luciano Nicolas Piancatelli</div>
+    <div><strong>Materia:</strong> Aplicaciones Hibridas</div>
+    <div><strong>Docente:</strong> Cruz, Jonathan Emanuel</div>
+    <div><strong>Comision:</strong> DWT4AP</div>
+  </footer>
+</body>
+</html>

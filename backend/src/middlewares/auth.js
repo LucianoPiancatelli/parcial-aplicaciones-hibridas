@@ -10,7 +10,7 @@ export function requireAuth(req, res, next) {
     req.user = { id: payload.sub, role: payload.role };
     next();
   } catch (err) {
-    return res.status(401).json({ error: 'Token inválido o expirado' });
+    return res.status(401).json({ error: 'Token invalido o expirado' });
   }
 }
 
@@ -21,4 +21,3 @@ export function requireRole(...roles) {
     next();
   };
 }
-

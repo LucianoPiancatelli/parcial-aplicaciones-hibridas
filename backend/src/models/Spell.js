@@ -20,7 +20,7 @@ const SpellSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Índices de texto útiles para búsquedas completas (opcional)
+// Indice de texto util para busquedas
 SpellSchema.index({ name: 'text' });
 
 export default mongoose.model('Spell', SpellSchema);

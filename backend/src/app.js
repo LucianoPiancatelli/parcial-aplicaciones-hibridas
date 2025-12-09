@@ -8,6 +8,8 @@ import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import spellRoutes from './routes/spellRoutes.js';
 import monsterRoutes from './routes/monsterRoutes.js';
+import raceRoutes from './routes/raceRoutes.js';
+import equipmentRoutes from './routes/equipmentRoutes.js';
 
 const app = express();
 
@@ -15,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
-// Views estáticas
+// Views estaticas
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +30,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/spells', spellRoutes);
 app.use('/api/monsters', monsterRoutes);
+app.use('/api/races', raceRoutes);
+app.use('/api/equipment', equipmentRoutes);
 
 // Manejo de errores
 app.use((req, res, next) => {

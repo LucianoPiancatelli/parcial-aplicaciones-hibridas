@@ -8,6 +8,8 @@ export default function Navbar() {
       <Link className="nav-link nav-link--brand" to="/">Inicio</Link>
       <Link className="nav-link" to="/spells">Spells</Link>
       <Link className="nav-link" to="/monsters">Monsters</Link>
+      <Link className="nav-link" to="/races">Races</Link>
+      <Link className="nav-link" to="/equipment">Equipment</Link>
       {user?.role === 'admin' && <Link className="nav-link" to="/admin">Admin</Link>}
       <span className="nav-spacer" />
       {user ? (

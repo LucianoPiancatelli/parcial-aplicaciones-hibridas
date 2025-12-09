@@ -1,56 +1,47 @@
-# Parcial-Aplicaciones-Hibridas
+# Parcial Aplicaciones Hibridas
 
-Alumno: Luciano Piancatelli - Brisa Gonzalez - Tomas Martinez
-Materia: Aplicaciones Hibridas
-Docente: Cruz, Jonathan Emanuel
-Comision: DWT4AP
+Mono-repo con backend Express/Mongo y frontend React (Vite) para consumir DnD5e API. Estructura:
 
-## Segunda Entrega: API + Frontend
+- `backend/`: API REST con JWT y CRUD para spells, monsters, races, equipment y usuarios (roles admin).
+- `frontend/`: SPA con React Router, contexto de autenticacion y vistas publicas/protegidas.
 
-El proyecto incluye:
-- Backend Node/Express con MongoDB y autenticacion JWT.
-- Entidades: Users, Spells y Monsters con CRUD separado para administradores.
-- Frontend React (Vite) con Router, Context y consumo de la API.
-
-> Importante: el archivo `.env` no se versiona. Copia `.env.example`, renombralo a `.env` y completa tus credenciales antes de ejecutar el proyecto.
+## Como correr
 
 ### Backend
+1) `cd backend`
+2) `cp .env.example .env` y completa `MONGO_URI`, `JWT_SECRET`
+3) `npm i`
+4) Poblar datos: `npm run seed` (D&D API) o `npm run seed:lite` (datos locales)
+5) `npm run dev` (puerto 3000 por defecto)
 
-Requisitos previos
-- Node 18+
-- MongoDB local o MongoDB Atlas
+### Frontend
+1) `cd frontend`
+2) `npm i`
+3) `npm run dev` (Vite en 5173 con proxy a `/api` -> `http://localhost:3000`)
 
-Configuracion
-1. Copiar `.env.example` a `.env` y completar:
-   - `MONGO_URI=mongodb://127.0.0.1:27017/dnd5e`
-   - `JWT_SECRET=<tu-secret>`
-2. Instalar deps: `npm i`
-3. Ejecutar: `npm run dev`
+## Endpoints principales (backend)
+- Auth: `POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me`
+- Usuarios (admin): `GET /api/users`, `GET /api/users/:id`, `PATCH /api/users/:id/role`
+- Spells: `GET /api/spells?name&level&school&ritual&concentration&page&limit`, CRUD admin
+- Monsters: `GET /api/monsters?name&type&crMin&crMax&page&limit`, CRUD admin
+- Races: `GET /api/races?name&size&page&limit`, CRUD admin
+- Equipment: `GET /api/equipment?name&category&gear&minWeight&maxWeight&page&limit`, CRUD admin
 
-Rutas principales
-- `POST /api/auth/register` y `POST /api/auth/login` (validadas con express-validator)
-- `GET /api/auth/me` para perfil autenticado
-- `GET /api/users` y `GET /api/users/:id` (admin)
-- `PATCH /api/users/:id/role` (admin) con validacion estricta de roles
-- `GET /api/spells` y `GET /api/monsters` con filtros y paginacion
-- `POST/PATCH/DELETE /api/spells|monsters` (admin) con validacion de payload antes de llegar a Mongo
+## Deploy rapido
+- Backend listo para Render (Node 18+, comando `npm i && npm run start` desde `backend/`).
+- Frontend listo para cualquier static host (build `npm run build` en `frontend/`).
 
-Semillas de datos
-- Opcional: `npm run seed` (descarga desde DnD5e API) o `npm run seed:lite`.
-
-### Frontend (Vite + React)
-
-Ir a `frontend/`:
-1. `npm i`
-2. `npm run dev`
-   - Vite corre en `http://localhost:5173` con proxy a `http://localhost:3000`.
-
-Caracteristicas
-- Login/Registro con validaciones en el cliente y almacenamiento de token en `localStorage`.
-- Context para estado global de autenticacion y `ProtectedRoute` con validacion opcional de roles.
-- Paginas: Home, Spells, Monsters, Login, Register y Admin (vista protegida para gestionar usuarios y roles).
-
-### Notas
-- Cambia el puerto del backend con `PORT` en `.env`.
-- Si tu maquina usa IPv6 para `localhost`, usa `127.0.0.1` en `MONGO_URI`.
-- Ejecuta `npm run seed` si necesitas poblar spells y monsters desde cero.
+## Deploy en Render.com
+1) Sube el repo a GitHub/GitLab.
+2) Crea un servicio **Web Service** para el backend:
+   - Root Directory: `backend`
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Env Vars: `MONGO_URI`, `JWT_SECRET`, (opcional) `JWT_EXPIRES_IN`
+   - Render asigna `PORT`, el servidor ya lo usa automaticamente.
+3) Opcional: correr `npm run seed` en un Shell de Render para poblar la base.
+4) Crea un **Static Site** para el frontend:
+   - Root Directory: `frontend`
+   - Build Command: `npm install && npm run build`
+   - Publish Directory: `dist`
+   - Env Var: `VITE_API_BASE=https://tu-backend.onrender.com`

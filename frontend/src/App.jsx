@@ -3,6 +3,8 @@ import Navbar from './components/Navbar.jsx';
 import Home from './pages/Home.jsx';
 import Spells from './pages/Spells.jsx';
 import Monsters from './pages/Monsters.jsx';
+import Races from './pages/Races.jsx';
+import Equipment from './pages/Equipment.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
@@ -17,6 +19,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/spells" element={<Spells />} />
           <Route path="/monsters" element={<Monsters />} />
+          <Route path="/races" element={<Races />} />
+          <Route path="/equipment" element={<Equipment />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute roles={['admin']} />}>

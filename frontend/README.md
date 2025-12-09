@@ -1,8 +1,16 @@
-Frontend React para el parcial.
+# Frontend - DnD5e Client (Vite + React)
 
-Scripts:
-- npm i
-- npm run dev
+SPA para consumir el backend DnD5e con vistas publicas y protegidas.
 
-Vite corre en 5173 y proxya /api al backend en 3000.
+## Scripts
+- `npm i`
+- `npm run dev` (5173, proxy a `/api` -> http://localhost:3000)
+- `npm run build` / `npm run preview`
 
+## Vistas
+- Home
+- Spells, Monsters, Races, Equipment (listas con filtros basicos)
+- Auth: Login, Register
+- Admin (solo rol admin) para listar usuarios y cambiar roles
+
+Configura `VITE_API_BASE` en un `.env` si el backend corre en otra URL.

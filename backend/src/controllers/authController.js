@@ -34,10 +34,10 @@ export async function login(req, res) {
 
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (!user) return res.status(401).json({ error: 'Credenciales inválidas' });
+  if (!user) return res.status(401).json({ error: 'Credenciales invalidas' });
 
   const ok = await bcrypt.compare(password, user.password);
-  if (!ok) return res.status(401).json({ error: 'Credenciales inválidas' });
+  if (!ok) return res.status(401).json({ error: 'Credenciales invalidas' });
 
   const token = signToken(user);
   res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
@@ -48,4 +48,3 @@ export async function me(req, res) {
   if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
   res.json(user);
 }
-
